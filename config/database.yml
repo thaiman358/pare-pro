@@ -1,0 +1,26 @@
+# 全てのDBに共通する設定
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %> 
+  template: template0
+#====poolはあらかじめいくつかDBにコネクトさせておいて、急な接続を無くし、PCの負荷を下げる
+
+# 開発環境用
+development:
+  <<: *default
+  database: sample_development
+
+# テスト環境用
+test:
+  <<: *default
+  database: sample_test
+
+# 本番環境用
+production:
+  <<: *default
+  database: sample_production
+  username: sample
+  password: <%= ENV['SAMPLE_DATABASE_PASSWORD'] %>
+  
+#ターミナル上で'''rails db:create'''を実行する

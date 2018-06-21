@@ -3,7 +3,8 @@ class BlogsController < ApplicationController
   def index
     @blogs = Blog.all # 全部表示する
   end
-
+  
+  # /newのリクエストを受け取った時の処理
   def new
     if params[:back]
       @blog = Blog.new(blog_params)
