@@ -54,7 +54,7 @@ class BlogsController < ApplicationController
     @blog.destroy
     redirect_to blogs_path, notice:"ブログを削除しました！"
   end
-
+  
   private
   def blog_params
     params.require(:blog).permit(:title, :content)
@@ -63,5 +63,4 @@ class BlogsController < ApplicationController
   def set_blog
   @blog = Blog.find(params[:id])
   end
-  
 end
